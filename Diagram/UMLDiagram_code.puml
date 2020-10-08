@@ -1,0 +1,73 @@
+@startuml
+Game "1"<--> "1" Player
+Game  *-- "1" Board
+Game "1" <-- "1" Ranking
+
+Board *-- "*" Square
+Square "*" o-- "0..1" Object
+
+RankingPlayer "0..10" --* Ranking
+
+class Game{
+- int points
+- Player player
+- Board board
+
+
++ play()
+- menu()
++ setPoints(int)
++ getPoints():int
+
+}
+
+class Player{
+- String name
+
++ Player(String)
++ getName(): String
++ setname(String)
+}
+
+class Board{
+- Square[][] listSquares
+
++ Board()
+- createMine()
+- createFlag()
+- setNumbers(int, int)
+}
+
+class Square{
+- Object object
+- boolean selected
+
++ Square(object)
++ getObject(): Object
++ setObject(Object)
++ isSelected():boolean
++ setSelected(boolean)
+
+}
+class Object{
+- String type
+- int numberValue
+
++ Object(String)
++ getType(): String
++ setType(String)
+}
+
+
+class RankingPlayer{
+- String name
+- int points
+}
+
+class Ranking{
+    - list<RankingPlayer>
+    
+    + createRankingPlayer()
+}
+
+@enduml
