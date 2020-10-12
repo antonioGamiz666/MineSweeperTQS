@@ -1,1 +1,1 @@
-# MinesWeeperTQS
+# MineSweeperTQS
