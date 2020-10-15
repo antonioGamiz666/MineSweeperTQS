@@ -27,12 +27,15 @@ class SqaureTest {
 		{
 			Square square = new Square(typeExpected);
 			assertEquals(typeExpected, square.getTypeObject());
+			assertFalse(square.isSelected());
 			
 			if(typeExpected == "fake")
 			{
 				assertTrue(Square.getObject() == null);
 			}
 		}
+		
+		
 
 	}
 
