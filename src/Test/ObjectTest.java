@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import main.Object;
+
+
 class ObjectTest {
 	
 	
@@ -16,12 +19,10 @@ class ObjectTest {
 		Object obj3 = new Object("number");
 		Object obj4 = new Object("empty");
 
-		assertArrayEquals(object[0],obj.getType());
-		assertArrayEquals(object[1],obj2.getType());
-		assertArrayEquals(object[2],obj3.getType());
-		assertArrayEquals(object[3],obj4.getType());
+		assertEquals(object[0],obj.getType());
+		assertEquals(object[1],obj2.getType());
+		assertEquals(object[2],obj3.getType());
+		assertEquals(object[3],obj4.getType());
 	}
-
-	
 	
 }
