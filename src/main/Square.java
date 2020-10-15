@@ -48,9 +48,17 @@ public class Square {
 	public boolean isSelected() {return selected;}
 	public void setSelected(boolean selected) {this.selected = selected;}
 
-	public Object getTypeObject() {
+	public String getTypeObject() {
 		
-		return object.getType();
+		if (object != null)
+		{
+			return object.getType();
+		}
+		else
+		{
+			return "wrong";
+		}
+		
 	}
 	
 	
