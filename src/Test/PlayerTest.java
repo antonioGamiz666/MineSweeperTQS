@@ -12,14 +12,14 @@ class PlayerTest {
 	void ConstructorTest() {
 		String[] player = {"Facundo","Eucalisto","Gracia", "Marcela23"};
 
-		Object obj = new Player("Facundo"); 
-		Object obj2 = new Player("Eucalisto");
-		Object obj3 = new Player("Gracia");
-		Object obj4 = new Player("Marcela23");
+		Object ply = new Player("Facundo"); 
+		Object ply2 = new Player("Eucalisto");
+		Object ply3 = new Player("Gracia");
+		Object ply4 = new Player("Marcela23");
 
-		assertEquals(player[0],obj.getType());
-		assertEquals(player[1],obj2.getType());
-		assertEquals(player[2],obj3.getType());
-		assertEquals(player[3],obj4.getType());
+		assertEquals(player[0],ply.getType());
+		assertEquals(player[1],ply.getType());
+		assertEquals(player[2],ply3.getType());
+		assertEquals(player[3],ply4.getType());
 	}
 }
