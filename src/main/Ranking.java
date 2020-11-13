@@ -19,6 +19,7 @@ public class Ranking {
 		if(rankingList.isEmpty()) {
 			rankingList.add(new RankingPlayer(name,points));
 		}else{
+			
 			int sizeList = rankingList.size()-1;
 			int lastPoints = rankingList.get(sizeList).getPoints();
 			
@@ -34,7 +35,6 @@ public class Ranking {
 					rankingList.add(new RankingPlayer(name,points));
 					Collections.sort(rankingList);
 				}
-				
 			}
 		}
 	}
