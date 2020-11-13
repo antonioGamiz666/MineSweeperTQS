@@ -61,6 +61,8 @@ public class Square {
 		
 	}
 	
+	public void setTypeObject(String type) {object.setType(type);}
+	
 	
 	
 	
