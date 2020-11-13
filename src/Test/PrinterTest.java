@@ -20,5 +20,12 @@ public class PrinterTest {
 		
 	}
 	
+	@Test boardPrintTest()
+	{
+		Printer printer = new Printer();
+		 Board board = new mockObjectBoard(2, 3, 3);
+		
+		printer.printBoard(board);
+	}
 
 }
