@@ -1,6 +1,6 @@
 package main;
 
-public class RankingPlayer {
+public class RankingPlayer implements Comparable<RankingPlayer>{
 	private String name;
 	private int points;
 	
@@ -16,6 +16,10 @@ public class RankingPlayer {
 	public int getPoints() {return points;}
 	
 	public void setPoints(String type) {this.points = points;}
-	
+
+	@Override
+    public int compareTo(RankingPlayer rp) {
+        return rp.points - this.points;
+    }
 
 }
