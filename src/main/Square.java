@@ -23,7 +23,7 @@ public class Square {
 			this.object = null;
 		}
 		
-		boolean selected = false;
+		this.selected = false;
 		
 		
 	}
