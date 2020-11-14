@@ -4,14 +4,14 @@ import main.Square;
 
 public class mockObjectBoard implements Board {
 
-	private Square listSquare[][];
+	private Square[][] listSquare;
 	private int maxX;
 	private int maxY;
 	
-	public mockObjectBoard(int numMines, int maxX,    int maxY){
+	public mockObjectBoard(int boardTest, int maxX,    int maxY){
 		
 		listSquare = new Square[maxX][maxY];
-		switch (numMines) {
+		switch (boardTest) {
 		
 		case 1:
 			listSquare[0][0] = new Square("mine");
