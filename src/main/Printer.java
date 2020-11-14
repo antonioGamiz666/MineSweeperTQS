@@ -4,16 +4,17 @@ import java.util.Scanner;
 
 public class Printer {
 	
-	final static char squareNotSlected = 254;
-	final static char squareSelected = 32;
-	final static char mine = 207;
-	final static char flag = 244;
+	final static char squareNotSlected = 127;
+	final static char squareSelected = 160;
+	final static char mine = 216;
+	final static char flag = 182;
 	final
 	
 	public int printMenu()
 	{
 		printMenuChoose();
 		Scanner sc = new Scanner(System.in);
+		
 		int option = sc.nextInt();
 		if(option < 1 || option > 3)
 		{
@@ -40,14 +41,16 @@ public class Printer {
 				for(int j = -1; j < board.getMaxY(); j++)
 				{
 					if(j ==-1) {System.out.print(" | ");}
-					else {System.out.print(j+2 + "| ");}
+					else {System.out.print(j+1 + "| ");}
+					
 				}
+				System.out.println("");
 			}
 			else
 			{
 				for(int j = -1; j < board.getMaxY(); j++)
 				{
-					if(j == -1) { System.out.print(j+2 + "|");}
+					if(j == -1) { System.out.print(i+1 + "| ");}
 					else 
 					{
 						if(board.isSelected(i, j))
@@ -57,16 +60,16 @@ public class Printer {
 								switch (board.getTypeObject(i, j)) {
 								//"mine", "flag","number","empty",
 								case "mine":
-									System.out.print(mine);
+									System.out.printf("%c", mine);
 									break;
 								case "wrong":
-									System.out.print(squareSelected);
+									System.out.printf("%c",squareSelected);
 									break;
 								case "number":
 									System.out.print(/*board.getNumber()*/ "0");
 									break;
 								case "flag":
-									System.out.print(flag);
+									System.out.printf("%c",flag);
 									break;
 								default:
 									break;
@@ -77,18 +80,20 @@ public class Printer {
 						{
 							if(board.getTypeObject(i, j) == "flag")
 							{
-								System.out.print(flag);
+								System.out.printf("%c",flag);
 							}
 							else
 							{
-								System.out.print(squareNotSlected);
+								System.out.printf("%c",squareNotSlected);
 							}
 						}
-						System.out.println("| ");
+						System.out.print("| ");
 					}
 					
 
 				}
+				
+				System.out.println("");
 			}
 		}
 				
