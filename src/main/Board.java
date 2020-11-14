@@ -61,4 +61,21 @@ public class Board {
 		}	
 	}
 	
+	public void setSquare(Square square, int X, int Y)
+	{
+		listSquares[X][Y] = square;	
+	}
+	
+	public Square getSquare(int X, int Y)
+	{
+		return listSquares[X][Y];
+	}
+	
+	public String getTypeObject(int X, int Y) {
+		
+		return listSquares[X][Y].getTypeObject();
+	}
+	
+	public boolean isSelected(int X, int Y) {return listSquares[X][Y].isSelected();}
+	
 }
