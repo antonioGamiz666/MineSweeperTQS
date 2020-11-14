@@ -13,6 +13,9 @@ public class Board {
 		this.numMines = numMines;
 		this.maxX = maxX;
 		this.maxY = maxY;
+		
+		createMines();
+		
 	}
 	
 	public int getNumMines() {return numMines;}
@@ -48,18 +51,59 @@ public class Board {
 	public void createMines() {
 		
 		int mines = 0;
+		boolean putMine = false;
 		
 		while (mines<numMines) {
 			
 			int randX = createRandom(maxX);
 			int randY = createRandom(maxY);
 			
-			if(listSquares[randX][randY].getTypeObject() == null) {
+			if(checkCoordX(randX) && checkCoordY(randY))
+			{
+				if(listSquares[randX][randY].getTypeObject() == null) {putMine = true;}
+				else
+				{
+					if(listSquares[randX][randY].getTypeObject() == "number") {putMine = true;}
+				}
+			}
+			
+			
+			if(putMine) 
+			{
 				listSquares[randX][randY].setTypeObject("mine");
+				setNumbers(randX, randY);
 				mines++;
-			}			
+			}
 		}	
 	}
+	
+	private boolean checkCoordX(int coordX) {return(coordX >= 0 && coordX < maxX);}
+	private boolean checkCoordY(int coordY) {return(coordY >= 0 && coordY < maxY);}
+	
+	private void setNumbers(int X, int Y)
+	{
+		for(int auxX =X-1; auxX<= X+1; auxX++)
+		{
+			for(int auxY =Y-1; auxY<= Y+1; auxX++)
+			{
+				if(checkCoordX(auxX) && checkCoordY(auxY))
+				{
+					if(listSquares[auxX][auxY].getObject() == null)
+					{
+						listSquares[auxX][auxY].setObject("number", 1);
+					}
+					else
+					{
+						if(listSquares[auxX][auxY].getTypeObject() == "number")
+						{
+							listSquares[auxX][auxY].setNumbers(listSquares[auxX][auxY].getNumber() + 1);
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	
 	public void setSquare(Square square, int X, int Y)
 	{
@@ -77,5 +121,18 @@ public class Board {
 	}
 	
 	public boolean isSelected(int X, int Y) {return listSquares[X][Y].isSelected();}
+	
+	
+	//----------------function for test-----------------------------//
+	public void setAllSelecetd()
+	{
+		for(int x=0; x<maxX; x++)
+		{
+			for(int y=0; y<maxY; y++)
+			{
+				listSquares[x][y].setSelected(true);
+			}				
+		}
+	}
 	
 }
