@@ -58,6 +58,7 @@ class BoardTest {
 		assertEquals(0, board.openSquare(5, 3));
 		System.out.println("-------------------------------------------");
 		System.out.println("");
+		
 		System.out.println("");
 		System.out.println("-------------------------------------------");
 		System.out.println("------------Check wrong number(3,5)--------");
@@ -92,12 +93,12 @@ class BoardTest {
 		board = new Board(0,5,5);		
 		board.setTypeObject(0,0, "mine");
 		board.setNumbertest(0,0);
-		board.setTypeObject(0,5, "mine");
-		board.setNumbertest(0,5);
-		board.setTypeObject(5,0, "mine");
-		board.setNumbertest(5,0);
-		board.setTypeObject(5,5, "mine");
-		board.setNumbertest(5,5);
+		board.setTypeObject(0,4, "mine");
+		board.setNumbertest(0,4);
+		board.setTypeObject(4,0, "mine");
+		board.setNumbertest(4,0);
+		board.setTypeObject(4,4, "mine");
+		board.setNumbertest(4,4);
 		
 		printer.printBoard(board);	
 		System.out.println("");

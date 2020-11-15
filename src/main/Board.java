@@ -136,22 +136,38 @@ public class Board {
 	public int getNumber(int x, int y) {return listSquares[x][y].getNumber();}
 	
 	private boolean checkFlag(int posX, int posY){
-	    if(getTypeObject(posX, posY) != "flag"){return true;}
+	    if(getTypeObject(posX, posY) == "flag"){return true;}
 	    else{return false;}
 	}
 
-	public void openSquare(int posX, int posY){
-	    setSelected(posX, posY, true);
-	    if(getNumber(posX, posY)>0 && checkFlag(posX,posY)){
-	    	setSelected(posX, posY, true);
-	    }else{
-	        openRecursiveSquare(posX, posY);
+	public int openSquare(int posX, int posY){
+	    int check = 1;
+		if(checkCoordX(posX) && checkCoordY(posY))
+	    {
+			if(!listSquares[posX][posY].isSelected())
+			{
+				setSelected(posX, posY, true);
+			    if(getNumber(posX, posY)>0 && checkFlag(posX,posY)){
+			    	setSelected(posX, posY, true);
+			    }else{
+			        openRecursiveSquare(posX, posY);
+			    }
+			}
+
 	    }
+		else
+		{
+			check = 0;
+		}
+		
+		return check;
+
 	}
 
 	private void openRecursiveSquare(int posX, int posY){
 	    
-	    //ARRIBA
+	    //System.out.println("posX:" + posX + "  posY:" + posY);
+		//ARRIBA
 	    if(posY-1>=0){
 	        openSquare(posX,posY-1);
 	    }
@@ -167,8 +183,20 @@ public class Board {
 	    if(posX-1>=0){
 	        openSquare(posX-1,posY);
 	    }
+	   
 	}
 	
+	private void checkOpenRecursive(int X, int Y)
+	{
+		if(!listSquares[X][Y].isSelected())
+		{
+			setSelected(X, Y, true);
+		    if(!checkFlag(X,Y)){
+		    	setSelected(X, Y, true);
+		    }
+		    openRecursiveSquare(X, Y);
+		}
+	}
 	
 	
 	
