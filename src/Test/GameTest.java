@@ -15,6 +15,7 @@ public class GameTest {
 	{
 		Game game = new Game();
 		
+		game.createBoardTest();
 		game.askMovementTest();
 	}
 	

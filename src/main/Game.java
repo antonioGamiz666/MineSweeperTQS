@@ -101,12 +101,12 @@ public class Game {
 	private void createBoard(int difficulty) {
 		//Board.Board(numberMines,sizeX,sizeY);
 		if (difficulty==0) {	
-			Board Board = new Board(10,8,8); 
+			Board = new Board(10,8,8); 
 		}else {
 			if(difficulty==1) {
-				Board Board = new Board(40,16,16); 
+				Board = new Board(40,16,16); 
 			}else{
-				Board Board = new Board(99,16,30); 
+				Board = new Board(99,16,30); 
 			}
 		}
 	}
@@ -196,5 +196,6 @@ public class Game {
 	/**----------------------------------------------------Functions to test ---------------------------**/
 	
 	public void askMovementTest() {askMovement();}
+	public void createBoardTest() {createBoard(0);}
 	
 }
