@@ -7,7 +7,7 @@ public class Printer {
 	
 	final static char squareNotSlected = 127;
 	final static char squareSelected = 160;
-	final static char mine = 216;
+	final static char mine = 215;
 	final static char flag = 182;
 	final
 	
@@ -67,7 +67,7 @@ public class Printer {
 									System.out.printf("%c",squareSelected);
 									break;
 								case "number":
-									System.out.print(/*board.getNumber()*/ "0");
+									System.out.print(board.getNumber(i,j));
 									break;
 								case "flag":
 									System.out.printf("%c",flag);

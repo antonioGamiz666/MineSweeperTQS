@@ -14,9 +14,9 @@ class BoardTest {
 	@Test
 	void ConstructorTest() {
 		
-		int numMines = 7;
+		int numMines = 25;
 		int boardX = 8;
-		int boardY = 12;
+		int boardY = 8;
 		
 		Board brd = new Board(numMines,boardX,boardY); 
 
@@ -31,7 +31,7 @@ class BoardTest {
 		Printer print = new Printer();
 		Scanner sc = new Scanner(System.in);
 		
-		Board board = new Board(7,10,10);
+		Board board = new Board(25,10,10);
 		board.setAllSelecetd();
 		
 		print.printBoard(board);
