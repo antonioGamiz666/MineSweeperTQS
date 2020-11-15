@@ -43,7 +43,7 @@ public class Square {
 	}
 
 	public static Object getObject() {return object;}
-	public void setObject(Object object) {Square.object = object;}
+	public void setObject(String type, int number) {this.object = new Object(type, number);}
 
 	public boolean isSelected() {return selected;}
 	public void setSelected(boolean selected) {this.selected = selected;}
@@ -61,7 +61,17 @@ public class Square {
 		
 	}
 	
-	public void setTypeObject(String type) {object.setType(type);}
+	public void setTypeObject(String type) 
+	{
+		if(object == null)
+		{
+			object = new Object(type);
+		}
+		else {object.setType(type);}
+			
+	}
+	public void setNumbers(int number) {object.setNumber(number);}
+	public int getNumber() {return object.getNumber();}
 	
 	
 	
