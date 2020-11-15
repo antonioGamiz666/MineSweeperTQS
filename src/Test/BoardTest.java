@@ -155,8 +155,28 @@ class BoardTest {
 		board.openSquare(0, 0);
 		
 		printer.printBoard(board);
+		System.out.println("");
+		System.out.println("-------------------------------------------");
+		System.out.println("------------------Five test---------------");
+		System.out.println("-------------------------------------------");
+		System.out.println("");
 		
+		board = new Board(0,5,5);
+		board.setTypeObject(2,2, "mine");
+		board.setNumbertest(2,2);
+		board.setTypeObject(1, 2, "flag");
+		board.setTypeObject(1, 0, "flag");
+		board.setTypeObject(0, 1, "flag");
 		
+		printer.printBoard(board);		
+		System.out.println("");
+		System.out.println("-------------------------------------------");
+		System.out.println("-------Check openSquare with flags---------");
+		System.out.println("-------------------------------------------");
+		System.out.println("");
+		
+		board.openSquare(4, 4);
+		printer.printBoard(board);
 		
 	}
 

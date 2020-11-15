@@ -235,20 +235,6 @@ public class Board {
 			case "mine":
 				System.out.println("im a mine, my coord are X:" +  X + " Y:" + Y);
 			case "flag":
-				/*if(listSquares[X][Y].getNumber()==0)
-				{
-					setSelected(X, Y, true);
-					openRecursiveSquare(X, Y);
-				}
-				else
-				{
-					if(listSquares[X][Y].getNumber()>0)
-					{
-						setSelected(X, Y, true);
-						
-					}
-				}*/
-				
 				break;		
 			default:
 				setSelected(X, Y, true);
