@@ -7,7 +7,7 @@ public class Printer {
 	
 	final static char squareNotSlected = 127;
 	final static char squareSelected = 160;
-	final static char mine = 215;
+	final static char mine = 216;
 	final static char flag = 182;
 	final
 	
@@ -31,15 +31,15 @@ public class Printer {
 		return option;		
 	}
 	
-	public void printBoard(Board board)
+	public void printBoard(Test.Board board1)
 	{
 		
-		for(int i = -1; i < board.getMaxX(); i ++)
+		for(int i = -1; i < board1.getMaxX(); i ++)
 		{
 			System.out.print("| ");
 			if(i == -1)
 			{
-				for(int j = -1; j < board.getMaxY(); j++)
+				for(int j = -1; j < board1.getMaxY(); j++)
 				{
 					if(j ==-1) {System.out.print(" | ");}
 					else {System.out.print(j+1 + "| ");}
@@ -49,16 +49,16 @@ public class Printer {
 			}
 			else
 			{
-				for(int j = -1; j < board.getMaxY(); j++)
+				for(int j = -1; j < board1.getMaxY(); j++)
 				{
 					if(j == -1) { System.out.print(i+1 + "| ");}
 					else 
 					{
-						if(board.isSelected(i, j))
+						if(board1.isSelected(i, j))
 						{
-							if(board.getSquare(i, j) !=null)
+							if(board1.getSquare(i, j) !=null)
 							{
-								switch (board.getTypeObject(i, j)) {
+								switch (board1.getTypeObject(i, j)) {
 								//"mine", "flag","number","empty",
 								case "mine":
 									System.out.printf("%c", mine);
@@ -67,19 +67,22 @@ public class Printer {
 									System.out.printf("%c",squareSelected);
 									break;
 								case "number":
-									System.out.print(board.getNumber(i,j));
+									int nAux = board1.getNumber(i,j);
+									if(nAux != 0) {System.out.print(nAux);}
+									else {System.out.printf("%c", squareSelected);}									
 									break;
 								case "flag":
 									System.out.printf("%c",flag);
 									break;
 								default:
+									System.out.printf("%c", squareSelected);
 									break;
 								}
 							}
 						}
 						else
 						{
-							if(board.getTypeObject(i, j) == "flag")
+							if(board1.getTypeObject(i, j) == "flag")
 							{
 								System.out.printf("%c",flag);
 							}
