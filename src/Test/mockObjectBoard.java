@@ -16,7 +16,7 @@ public class mockObjectBoard implements Board {
 		case 1:
 			listSquare[0][0] = new Square("mine");
 			listSquare[0][0].setSelected(true);
-			listSquare[0][1] = new Square();
+			listSquare[0][1] = new Square("hi");
 			listSquare[0][1].setSelected(true);
 			listSquare[0][2] = new Square("flag");
 			listSquare[0][2].setSelected(true);
@@ -24,9 +24,9 @@ public class mockObjectBoard implements Board {
 			listSquare[1][0].setSelected(true);
 			listSquare[1][1] = new Square("mine");
 			listSquare[1][1].setSelected(true);
-			listSquare[1][2] = new Square();
+			listSquare[1][2] = new Square("fake");
 			listSquare[1][2].setSelected(true);
-			listSquare[2][0] = new Square();
+			listSquare[2][0] = new Square("fake");
 			listSquare[2][0].setSelected(true);
 			listSquare[2][1] = new Square("mine");
 			listSquare[2][1].setSelected(true);
@@ -36,12 +36,12 @@ public class mockObjectBoard implements Board {
 			
 		case 2:
 			listSquare[0][0] = new Square("mine");
-			listSquare[0][1] = new Square();
+			listSquare[0][1] = new Square("fake");
 			listSquare[0][2] = new Square("flag");
 			listSquare[1][0] = new Square("empty");
 			listSquare[1][1] = new Square("mine");
-			listSquare[1][2] = new Square();
-			listSquare[2][0] = new Square();
+			listSquare[1][2] = new Square("fake");
+			listSquare[2][0] = new Square("fake");
 			listSquare[2][1] = new Square("mine");
 			listSquare[2][2] = new Square("number");
 			break;
@@ -83,6 +83,12 @@ public class mockObjectBoard implements Board {
 
 	@Override
 	public String getTypeObject(int X, int Y) {return listSquare[X][Y].getTypeObject();}
+
+
+	@Override
+	public int getNumber(int i, int j) {
+		return listSquare[i][j].getNumber();
+	}
 	
 	
 
