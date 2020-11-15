@@ -20,20 +20,31 @@ public class Ranking {
 			rankingList.add(new RankingPlayer(name,points));
 		}else{
 			
-			int sizeList = rankingList.size()-1;
-			int lastPoints = rankingList.get(sizeList).getPoints();
+			int sizeList = rankingList.size();
+			int lastPoints = rankingList.get(sizeList-1).getPoints();
 			
-			if(sizeList < 5) {
+			if(sizeList <= 4) {
 				if(lastPoints < points) {
+					rankingList.add(new RankingPlayer(name,points));
 					Collections.sort(rankingList);
 				}else {
 					rankingList.add(new RankingPlayer(name,points));
 				}
 			}else{
 				if(lastPoints < points) {
+					/*rankingList.add(new RankingPlayer(name,points));
+					Collections.sort(rankingList);
+					sizeList = rankingList.size()-1;*/
+					
+					
+					
 					rankingList.remove(4);
 					rankingList.add(new RankingPlayer(name,points));
 					Collections.sort(rankingList);
+					
+					/*if(sizeList>5) {
+						rankingList.remove(5);
+					}*/
 				}
 			}
 		}
