@@ -11,7 +11,7 @@ import main.Printer;
 
 class BoardTest {
 
-	@Test
+	//@Test
 	void ConstructorTest() {
 		
 		int numMines = 25;
@@ -25,7 +25,7 @@ class BoardTest {
 		assertEquals(boardY,brd.getMaxY());
 	}
 	
-	@Test
+	//@Test
 	void setNumbersTest()
 	{
 		Printer print = new Printer();
@@ -54,11 +54,24 @@ class BoardTest {
 		printer.printBoard(board);
 		System.out.println("");
 		System.out.println("-------------------------------------------");
-		System.out.println("------------Check open number(4,5)---------");
+		System.out.println("------------Check wrong number(5,3)--------");
+		assertEquals(0, board.openSquare(5, 3));
+		System.out.println("-------------------------------------------");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("-------------------------------------------");
+		System.out.println("------------Check wrong number(3,5)--------");
+		assertEquals(0, board.openSquare(3, 5));
 		System.out.println("-------------------------------------------");
 		System.out.println("");
 		
-		board.openSquare(4,5);
+		System.out.println("");
+		System.out.println("-------------------------------------------");
+		System.out.println("------------Check open number(2,3)---------");
+		System.out.println("-------------------------------------------");
+		System.out.println("");
+		
+		board.openSquare(2,3);
 		
 		printer.printBoard(board);		
 		System.out.println("");
