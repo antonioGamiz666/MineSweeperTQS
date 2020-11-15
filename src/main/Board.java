@@ -130,8 +130,48 @@ public class Board {
 	
 	public boolean isSelected(int X, int Y) {return listSquares[X][Y].isSelected();}
 	
+	private void setSelected(int X, int Y, boolean selected) {listSquares[X][Y].setSelected(selected);}
+	
 
 	public int getNumber(int x, int y) {return listSquares[x][y].getNumber();}
+	
+	private boolean checkFlag(int posX, int posY){
+	    if(getTypeObject(posX, posY) != "flag"){return true;}
+	    else{return false;}
+	}
+
+	public void openSquare(int posX, int posY){
+	    setSelected(posX, posY, true);
+	    if(getNumber(posX, posY)>0 && checkFlag(posX,posY)){
+	    	setSelected(posX, posY, true);
+	    }else{
+	        openRecursiveSquare(posX, posY);
+	    }
+	}
+
+	private void openRecursiveSquare(int posX, int posY){
+	    
+	    //ARRIBA
+	    if(posY-1>=0){
+	        openSquare(posX,posY-1);
+	    }
+	    //ABAJO
+	    if(posY+1<getMaxY()){
+	        openSquare(posX,posY+1);
+	    }
+	    //DERECHA
+	    if(posX+1<getMaxX()){
+	        openSquare(posX+1,posY);
+	    }
+	    //IZQUIERDA
+	    if(posX-1>=0){
+	        openSquare(posX-1,posY);
+	    }
+	}
+	
+	
+	
+	
 	
 	
 	//----------------function for test--------------------------------------------------------------//
