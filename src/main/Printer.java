@@ -1,12 +1,13 @@
 package main;
 
 import java.util.Scanner;
+import main.Board;
 
 public class Printer {
 	
 	final static char squareNotSlected = 127;
 	final static char squareSelected = 160;
-	final static char mine = 216;
+	final static char mine = 215;
 	final static char flag = 182;
 	final
 	
@@ -30,7 +31,7 @@ public class Printer {
 		return option;		
 	}
 	
-	public void printBoard(Test.Board board)
+	public void printBoard(Board board)
 	{
 		
 		for(int i = -1; i < board.getMaxX(); i ++)
@@ -66,7 +67,7 @@ public class Printer {
 									System.out.printf("%c",squareSelected);
 									break;
 								case "number":
-									System.out.print(/*board.getNumber()*/ "0");
+									System.out.print(board.getNumber(i,j));
 									break;
 								case "flag":
 									System.out.printf("%c",flag);
@@ -115,5 +116,6 @@ public class Printer {
 		System.out.println("--             Error: Choose again          --");
 		System.out.println("----------------------------------------------");
 	}
+
 
 }
