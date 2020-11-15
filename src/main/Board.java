@@ -130,8 +130,11 @@ public class Board {
 	
 	public boolean isSelected(int X, int Y) {return listSquares[X][Y].isSelected();}
 	
+
+	public int getNumber(int x, int y) {return listSquares[x][y].getNumber();}
 	
-	//----------------function for test-----------------------------//
+	
+	//----------------function for test--------------------------------------------------------------//
 	public void setAllSelecetd()
 	{
 		for(int x=0; x<maxX; x++)
@@ -142,9 +145,11 @@ public class Board {
 			}				
 		}
 	}
+	
+	public void setTypeObject(int X, int Y, String type) {listSquares[X][Y].setTypeObject(type);}
+	
+	public void setNumbertest(int X, int Y) {this.setNumbers(X, Y);}
 
-	public int getNumber(int x, int y) {
-		return listSquares[x][y].getNumber();
-	}
+	//----------------------------------------------------------------------------------------------//
 	
 }
