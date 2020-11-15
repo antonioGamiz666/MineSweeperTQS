@@ -41,7 +41,7 @@ class BoardTest {
 		assertTrue(1==check);
 	}
 	
-	//@Test
+	@Test
 	void openSquaretest()
 	{
 		Printer printer = new Printer();
