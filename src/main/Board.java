@@ -259,7 +259,36 @@ public class Board {
 	    }
 	}
 	
+	public void setTypeObject(int X, int Y, String type) {listSquares[X][Y].setTypeObject(type);}
 	
+	public boolean checkEndGame() {
+		
+		boolean search= true;
+		
+		for(int posX=0;posX<maxX;posX++) {
+			for(int posY=0;posY<maxX;posY++) {
+					if(!listSquares[posX][posY].isSelected() && listSquares[posX][posY].getTypeObject()=="number") {
+						search = false;
+						return search;
+					}
+					if(!listSquares[posX][posY].isSelected() && listSquares[posX][posY].getTypeObject()=="flag") {
+						if(listSquares[posX][posY].getNumber()!=-1) {
+						search = false;
+						return search;	
+						}
+					}
+			}
+		}
+		return search;
+	}
+	
+	public void setFlag(int posX, int posY) {
+		if(listSquares[posX][posY].isFlag()) {
+			listSquares[posX][posY].setFlag(false);
+		}else {
+			listSquares[posX][posY].setFlag(true);
+		}
+	}
 	
 	
 	//----------------function for test--------------------------------------------------------------//
@@ -273,8 +302,6 @@ public class Board {
 			}				
 		}
 	}
-	
-	public void setTypeObject(int X, int Y, String type) {listSquares[X][Y].setTypeObject(type);}
 	
 	public void setNumbertest(int X, int Y) {this.setNumbers(X, Y);}
 
