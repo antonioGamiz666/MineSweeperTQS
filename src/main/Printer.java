@@ -31,15 +31,15 @@ public class Printer {
 		return option;		
 	}
 	
-	public void printBoard(Test.Board board1)
+	public void printBoard(Board board)
 	{
 		
-		for(int i = -1; i < board1.getMaxX(); i ++)
+		for(int i = -1; i < board.getMaxX(); i ++)
 		{
 			System.out.print("| ");
 			if(i == -1)
 			{
-				for(int j = -1; j < board1.getMaxY(); j++)
+				for(int j = -1; j < board.getMaxY(); j++)
 				{
 					if(j ==-1) {System.out.print(" | ");}
 					else {System.out.print(j+1 + "| ");}
@@ -49,16 +49,16 @@ public class Printer {
 			}
 			else
 			{
-				for(int j = -1; j < board1.getMaxY(); j++)
+				for(int j = -1; j < board.getMaxY(); j++)
 				{
 					if(j == -1) { System.out.print(i+1 + "| ");}
 					else 
 					{
-						if(board1.isSelected(i, j))
+						if(board.isSelected(i, j))
 						{
-							if(board1.getSquare(i, j) !=null)
+							if(board.getSquare(i, j) !=null)
 							{
-								switch (board1.getTypeObject(i, j)) {
+								switch (board.getTypeObject(i, j)) {
 								//"mine", "flag","number","empty",
 								case "mine":
 									System.out.printf("%c", mine);
@@ -67,7 +67,7 @@ public class Printer {
 									System.out.printf("%c",squareSelected);
 									break;
 								case "number":
-									int nAux = board1.getNumber(i,j);
+									int nAux = board.getNumber(i,j);
 									if(nAux != 0) {System.out.print(nAux);}
 									else {System.out.printf("%c", squareSelected);}									
 									break;
@@ -82,7 +82,7 @@ public class Printer {
 						}
 						else
 						{
-							if(board1.getTypeObject(i, j) == "flag")
+							if(board.getTypeObject(i, j) == "flag")
 							{
 								System.out.printf("%c",flag);
 							}
