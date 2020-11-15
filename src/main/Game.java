@@ -4,15 +4,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+import main.Printer;
+
 public class Game {
 	
-	Board Board;
-	Printer printer;
-	Ranking ranking;
-	Player player;
-	boolean gameOver;
-	boolean gameEnd;
-	int movX,movY,flag;
+	private final int MIN_POINTS = 10;
+	
+	private Board Board;
+	private Player player;
+	private boolean gameOver;
+	private boolean gameEnd;
+	private int movX,movY,flag;
 	
 	public Game(){
 		
@@ -20,28 +22,57 @@ public class Game {
 		this.gameEnd = false;
 	}
 	
-	private void showMineMap(){
-	    int boardX = Board.getMaxX();
-	    int boardY = Board.getMaxY();
-	    String type;
-
-	    for(int i=0;i<boardX;i++){
-	        for(int j=0;j<boardY;j++){
-	            type = Board.getTypeObject(i,j);
-	            if(type=="mine"){
-	                Board.isSelected(i,j); ////////// ¿¿Cuál es la función que abre la casilla??
-	            }
-	        }
-	    }
+	public static void main(String[] arg)
+	{
+		Printer printer = new Printer();
+		Game game = new Game();
+		Ranking ranking = new Ranking();
+				
+		int play = game.printMenuStart(printer);
+		if(play == 1)
+		{
+			int points = 0;
+			
+			game.newPlayer();
+			points = game.play(printer);
+			
+			ranking.createRankingPlayer(game.getName(), points);
+			printer.showRanking(ranking);
+		}
+		
+		//game.showFarewell
+		
+		
 	}
 	
-	private void newPlayer(int points) {
+	
+	public int printMenuStart(Printer printer)
+	{
+		int option = printer.printMenu();
+		switch (option) {
+		case 2:
+			//showStats()
+			option = printer.printMenu();
+			break;
+		case 3:
+			//showFarewell()
+			gameEnd = true;
+			break;
+
+		}
+		return option;
+	}
+	
+	
+	
+	public void newPlayer(/*int points*/) {
 		System.out.println("Write your name: ");
 		try{
 	           BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 	           String name = bufferRead.readLine();
-	           player.setName(name);
-	           ranking.createRankingPlayer(name,points);
+	           player = new Player(name);
+	           //player.setName(name);
+	           //ranking.createRankingPlayer(name,points);
 	       }
 	       catch(IOException e)
 	       {
@@ -49,16 +80,18 @@ public class Game {
 	       }
 	}
 	
+	public String getName() {return player.getName();}
+	
 	
 	private void createBoard(int difficulty) {
 		//Board.Board(numberMines,sizeX,sizeY);
 		if (difficulty==0) {	
-			Board Board = new Board(4,5,5); 
+			Board = new Board(10,8,8); 
 		}else {
 			if(difficulty==1) {
-				Board Board = new Board(31,8,8); 
+				Board = new Board(40,16,16); 
 			}else{
-				Board Board = new Board(68,1,11); 
+				Board = new Board(99,16,30); 
 			}
 		}
 	}
@@ -72,7 +105,7 @@ public class Game {
 		while(!check) {
 			System.out.println("Write x axis: ");
 	        movX = keyboard.nextInt();
-	        if(movX <= Board.getMaxX()) {
+	        if(Board.checkCoordX(movX)) {
 	        	check=true;
 	        }
 		}
@@ -80,7 +113,7 @@ public class Game {
 		while(!check) {
 			System.out.println("Write y axis: ");
 	        movY = keyboard.nextInt();
-	        if(movY <= Board.getMaxY()) {
+	        if(Board.checkCoordY(movY)) {
 	        	check=true;
 	        }
 		}
@@ -88,54 +121,64 @@ public class Game {
 		while(!check) {
 			System.out.println("Flag? Write 0(yes)-1(no): ");
 			flag = keyboard.nextInt();
-	        if(flag <= 1) {
+	        if(flag == 0 || flag == 1) {
 	        	check=true;
 	        }
 		}
 	}
+	
 		
-	public void play(){
+	public int play(Printer printer){
 
-	    String type;
-	    boolean gameEnd = false;
-	    int points = 0;
-	    int difficulty = 0;
-	    
-	    createBoard(difficulty);
+	    int points = 0, result = 0;
+	    int difficulty = printer.printDifficultMenu();
 	    
 	    
-	    while(!gameOver && !gameEnd) {
+	    while(!gameOver)
+	    {
+	    	this.createBoard(difficulty);
+	    	printer.printBoard(Board);
 	    	
-	        //Pedirle la i y la j y si quiere poner una banderita
-	    	askMovement();
-
-	    	
-	        //hacer esto solo si no ha puesto una bandera
-	    	
-	        
-	        type = Board.getTypeObject(i,j);
-
-	        if(type=="number") {
-	        	//llamar funcion recursiva
-	        	//gameEnd= llamar funcion si se ha completado el juego
-	        	
-	        }else {
-	        	if(type=="flag") {
-	        		//llamar funcion poner/quitar flag
-	        	}else{
-	        		//llamar funcion poner mina
-	        		gameOver= true;
-	        	}
-	        }
-	        Printer.printBoard(Board);
+	    	while(!gameEnd)
+	    	{
+	    		askMovement();
+	    		if(flag == 0)
+	    		{
+	    			Board.setTypeObject(movX, movY, "flag");
+	    		}
+	    		else
+	    		{
+	    			result = Board.openSquare(movX, movY);
+	    			
+	    			if(result == 0)
+	    			{
+	    				gameEnd = true;
+	    				gameOver = true;
+	    			
+	    			}
+	    			else
+	    			{
+	    				if(result == -1)
+	    				{
+	    					System.out.println("!!!!!!ERROR!!!!!!!!");
+	    				}
+	    			}
+	    		}
+	    	}
+	    	if(!gameOver)
+	    	{
+	    		points = (difficulty+1)*MIN_POINTS;
+	    	}	    	
 	    }
+	    
+	    return points;
 
-	    if(gameOver){
-	        showMineMap();
-	        Printer.printBoard(Board);
-	        newPlayer(points);
-	    }else{
-	    	newPlayer(points);
-	    }
 	}
+	
+	
+	/**----------------------------------------------------Functions to test ---------------------------**/
+	
+	public void askMovementTest() {askMovement();}
+	public void createBoardTest() {createBoard(0);}
+	
 }

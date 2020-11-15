@@ -10,7 +10,17 @@ public class Printer {
 	final static char mine = 216;
 	final static char flag = 182;
 	
-	public void printRanking(String name, int points, int pos) {
+	public void showRanking(Ranking rank)
+	{
+		 int length = rank.numPlayers();
+	        for(int pos=1;pos<length;pos++) {
+	            printRanking(rank.getName(pos),rank.getPoints(pos),pos);
+	        }
+	}
+	
+	
+	
+	private void printRanking(String name, int points, int pos) {
 		if(pos==1) {
 			System.out.print("----------------- RANKING -----------------");
 			System.out.print("| --------- Name ------------- Points -----|");
