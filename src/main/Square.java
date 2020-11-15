@@ -61,7 +61,15 @@ public class Square {
 		
 	}
 	
-	public void setTypeObject(String type) {object.setType(type);}
+	public void setTypeObject(String type) 
+	{
+		if(object == null)
+		{
+			object = new Object(type);
+		}
+		else {object.setType(type);}
+			
+	}
 	public void setNumbers(int number) {object.setNumber(number);}
 	public int getNumber() {return object.getNumber();}
 	

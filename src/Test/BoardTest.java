@@ -25,11 +25,14 @@ class BoardTest {
 		assertEquals(boardY,brd.getMaxY());
 	}
 	
-	void setNumberstest(int x, int y)
+	@Test
+	void setNumbersTest()
 	{
-		Board board = new Board(5,4,4);
 		Printer print = new Printer();
 		Scanner sc = new Scanner(System.in);
+		
+		Board board = new Board(7,10,10);
+		board.setAllSelecetd();
 		
 		print.printBoard(board);
 		

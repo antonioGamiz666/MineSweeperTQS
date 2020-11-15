@@ -7,13 +7,16 @@ public class Board {
 	private int numMines;
 	private int maxX;
 	private int maxY;
-	private Square listSquares[][];
+	private Square[][] listSquares;
 	
 	public Board(int numMines, int maxX,	int maxY){
 		this.numMines = numMines;
 		this.maxX = maxX;
 		this.maxY = maxY;
 		
+		listSquares = new Square[maxX][maxY];
+		
+		createBoard();
 		createMines();
 		
 	}
@@ -60,13 +63,16 @@ public class Board {
 			
 			if(checkCoordX(randX) && checkCoordY(randY))
 			{
-				if(listSquares[randX][randY].getTypeObject() == null) {putMine = true;}
+				if(listSquares[randX][randY].getObject() == null) {putMine = true;}
 				else
 				{
-					if(listSquares[randX][randY].getTypeObject() == "number") {putMine = true;}
+					if(listSquares[randX][randY].getTypeObject() == null) {putMine = true;}
+					else
+					{
+						if(listSquares[randX][randY].getTypeObject() == "number") {putMine = true;}
+					}					
 				}
 			}
-			
 			
 			if(putMine) 
 			{
@@ -84,7 +90,7 @@ public class Board {
 	{
 		for(int auxX =X-1; auxX<= X+1; auxX++)
 		{
-			for(int auxY =Y-1; auxY<= Y+1; auxX++)
+			for(int auxY =Y-1; auxY<= Y+1; auxY++)
 			{
 				if(checkCoordX(auxX) && checkCoordY(auxY))
 				{
