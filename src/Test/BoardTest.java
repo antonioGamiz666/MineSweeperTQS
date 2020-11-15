@@ -118,6 +118,8 @@ class BoardTest {
 		
 		board = new Board(0,5,5);
 		board.setTypeObject(2,2, "mine");
+		board.setTypeObject(0, 0, "mine");
+		board.setTypeObject(1, 1,"mine");
 		board.setNumbertest(2,2);
 		
 		printer.printBoard(board);		
@@ -127,7 +129,7 @@ class BoardTest {
 		System.out.println("-------------------------------------------");
 		System.out.println("");
 		
-		board.openSquare(2, 2);
+		assertEquals(0, board.openSquare(2, 2));
 		
 		printer.printBoard(board);
 		System.out.println("");
@@ -150,7 +152,7 @@ class BoardTest {
 		System.out.println("-------------------------------------------");
 		System.out.println("");
 		
-		board.openSquare(4, 4);
+		board.openSquare(0, 0);
 		
 		printer.printBoard(board);
 		

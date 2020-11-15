@@ -146,18 +146,26 @@ public class Board {
 	    {
 			if(!listSquares[posX][posY].isSelected())
 			{
-				setSelected(posX, posY, true);
-			    if(getNumber(posX, posY)>0 && checkFlag(posX,posY)){
-			    	setSelected(posX, posY, true);
-			    }else{
-			        openRecursiveSquare(posX, posY);
-			    }
+				if(getTypeObject(posX, posY) !="mine")
+				{
+					setSelected(posX, posY, true);
+				    if(getNumber(posX, posY)>0 /*&& checkFlag(posX,posY)*/){
+				    	setSelected(posX, posY, true);
+				    }else{
+				        openRecursiveSquare(posX, posY);
+				    }
+				}
+				else 
+				{
+					setSelected(posX, posY, true);
+					showMineMap();
+					check = 0;
+				}			
 			}
-
 	    }
 		else
 		{
-			check = 0;
+			check = -1;
 		}
 		
 		return check;
@@ -167,22 +175,44 @@ public class Board {
 	private void openRecursiveSquare(int posX, int posY){
 	    
 	    //System.out.println("posX:" + posX + "  posY:" + posY);
-		//ARRIBA
+		
+		//UP
 	    if(posY-1>=0){
-	        openSquare(posX,posY-1);
+	    	checkOpenRecursive(posX, posY-1);
 	    }
-	    //ABAJO
+	    //DOWN
 	    if(posY+1<getMaxY()){
-	        openSquare(posX,posY+1);
+	    	checkOpenRecursive(posX, posY+1);
 	    }
-	    //DERECHA
+	    //RIGHT
 	    if(posX+1<getMaxX()){
-	        openSquare(posX+1,posY);
+	    	checkOpenRecursive(posX+1, posY);
 	    }
-	    //IZQUIERDA
+	    //LEFT
 	    if(posX-1>=0){
-	        openSquare(posX-1,posY);
+	    	checkOpenRecursive(posX-1, posY);
 	    }
+	    //UP-LEFT
+	    if(posY-1>=0 && posX-1>=0)
+	    {
+	    	checkOpenRecursive(posX-1, posY-1);
+	    }
+	    //UP-RiGHT
+	    if(posY-1>=0 && posX+1<getMaxX())
+	    {
+	    	checkOpenRecursive(posX+1, posY-1);
+	    }
+	    //DOWN-LEFT
+	    if(posY+1<getMaxY() && posX-1>=0 )
+	    {
+	    	checkOpenRecursive(posX-1, posY+1);
+	    }
+	    //DOWN RIGHT
+	    if(posY+1<getMaxY() && posX+1<getMaxX())
+	    {
+	    	checkOpenRecursive(posX+1, posY+1);
+	    }
+	    
 	   
 	}
 	
@@ -190,14 +220,58 @@ public class Board {
 	{
 		if(!listSquares[X][Y].isSelected())
 		{
-			setSelected(X, Y, true);
-		    if(!checkFlag(X,Y)){
-		    	setSelected(X, Y, true);
-		    }
-		    openRecursiveSquare(X, Y);
+			switch (listSquares[X][Y].getTypeObject()) {
+			case "number":
+				if(listSquares[X][Y].getNumber()>0)
+				{
+					setSelected(X, Y, true);
+				}
+				else
+				{
+					setSelected(X, Y, true);
+					openRecursiveSquare(X, Y);
+				}
+				break;
+			case "mine":
+				System.out.println("im a mine, my coord are X:" +  X + " Y:" + Y);
+			case "flag":
+				/*if(listSquares[X][Y].getNumber()==0)
+				{
+					setSelected(X, Y, true);
+					openRecursiveSquare(X, Y);
+				}
+				else
+				{
+					if(listSquares[X][Y].getNumber()>0)
+					{
+						setSelected(X, Y, true);
+						
+					}
+				}*/
+				
+				break;		
+			default:
+				setSelected(X, Y, true);
+				openRecursiveSquare(X, Y);
+				break;
+			}
+		    
 		}
 	}
 	
+	
+	private void showMineMap(){
+	    String type;
+
+	    for(int i=0;i<maxX;i++){
+	        for(int j=0;j<maxY;j++){
+	            type = getTypeObject(i,j);
+	            if(type=="mine"){
+	            	setSelected(i, j, true);
+	            }
+	        }
+	    }
+	}
 	
 	
 	
