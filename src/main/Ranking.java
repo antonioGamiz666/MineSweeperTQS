@@ -53,5 +53,8 @@ public class Ranking {
 	public RankingPlayer getRanking(int position) {
 			return rankingList.get(position-1);
 	}	
+    public int getPoints(int position) {return rankingList.get(position-1).getPoints();}
+    public String getName(int position) {return rankingList.get(position-1).getName();}
+    public int numPlayers() {return rankingList.size();}
 	
 }

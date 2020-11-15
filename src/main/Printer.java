@@ -9,7 +9,14 @@ public class Printer {
 	final static char squareSelected = 160;
 	final static char mine = 216;
 	final static char flag = 182;
-	final
+	
+	public void printRanking(String name, int points, int pos) {
+		if(pos==1) {
+			System.out.print("----------------- RANKING -----------------");
+			System.out.print("| --------- Name ------------- Points -----|");
+		}
+			System.out.print("| ----"+pos+"."+name+"-------------"+points+"---|" );	
+	}
 	
 	public int printMenu()
 	{
@@ -31,6 +38,33 @@ public class Printer {
 		return option;		
 	}
 	
+	public int printDifficultMenu()
+    {
+        chooseDifficulty();
+        Scanner sc = new Scanner(System.in);
+        
+        int difficulty = sc.nextInt();
+        if(difficulty < 1 || difficulty > 3)
+        {
+            errorChoose();
+            while(difficulty < 1 || difficulty > 3)
+            {
+                printMenuChoose();
+                difficulty = sc.nextInt();
+            }
+        }
+        
+        return difficulty;        
+    }
+
+    private void chooseDifficulty()
+    {
+        System.out.println("----------------------------------------------");
+        System.out.println("--            Choose your difficult         --");
+        System.out.println("----------------------------------------------");
+        
+    }
+    
 	public void printBoard(Board board)
 	{
 		
