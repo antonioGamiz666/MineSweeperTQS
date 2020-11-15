@@ -85,8 +85,8 @@ public class Board {
 		
 	}
 	
-	private boolean checkCoordX(int coordX) {return(coordX >= 0 && coordX < maxX);}
-	private boolean checkCoordY(int coordY) {return(coordY >= 0 && coordY < maxY);}
+	public boolean checkCoordX(int coordX) {return(coordX >= 0 && coordX < maxX);}
+	public boolean checkCoordY(int coordY) {return(coordY >= 0 && coordY < maxY);}
 	
 	private void setNumbers(int X, int Y)
 	{

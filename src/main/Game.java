@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+import main.Printer;
+
 public class Game {
 	
 	Board Board;
@@ -20,6 +22,51 @@ public class Game {
 		this.gameEnd = false;
 	}
 	
+	public static void main(String[] arg)
+	{
+		Printer printer = new Printer();
+		Game game = new Game();
+				
+		int play = game.printMenuStart(printer);
+		if(play == 1)
+		{
+			game.newPlayer();
+			game.play(printer);
+		}
+		
+		//game.showFarewell
+		
+		
+	}
+	
+	
+	public int printMenuStart(Printer printer)
+	{
+		int option = printer.printMenu();
+		switch (option) {
+		case 2:
+			//showStats()
+			option = printer.printMenu();
+			break;
+		case 3:
+			//showFarewell()
+			gameEnd = true;
+			break;
+
+		}
+		return option;
+		
+		
+	}
+	
+	private void printRanking() {
+        
+        int length = ranking.numPlayers();
+        for(int pos=1;pos<length;pos++) {
+            printer.printRanking(ranking.getName(pos),ranking.getPoints(pos),pos);
+        }
+    }
+	
 	private void showMineMap(){
 	    int boardX = Board.getMaxX();
 	    int boardY = Board.getMaxY();
@@ -35,13 +82,14 @@ public class Game {
 	    }
 	}
 	
-	private void newPlayer(int points) {
+	public void newPlayer(/*int points*/) {
 		System.out.println("Write your name: ");
 		try{
 	           BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 	           String name = bufferRead.readLine();
-	           player.setName(name);
-	           ranking.createRankingPlayer(name,points);
+	           player = new Player(name);
+	           //player.setName(name);
+	           //ranking.createRankingPlayer(name,points);
 	       }
 	       catch(IOException e)
 	       {
@@ -53,12 +101,12 @@ public class Game {
 	private void createBoard(int difficulty) {
 		//Board.Board(numberMines,sizeX,sizeY);
 		if (difficulty==0) {	
-			Board Board = new Board(4,5,5); 
+			Board Board = new Board(10,8,8); 
 		}else {
 			if(difficulty==1) {
-				Board Board = new Board(31,8,8); 
+				Board Board = new Board(40,16,16); 
 			}else{
-				Board Board = new Board(68,1,11); 
+				Board Board = new Board(99,16,30); 
 			}
 		}
 	}
@@ -72,7 +120,7 @@ public class Game {
 		while(!check) {
 			System.out.println("Write x axis: ");
 	        movX = keyboard.nextInt();
-	        if(movX <= Board.getMaxX()) {
+	        if(Board.checkCoordX(movX)) {
 	        	check=true;
 	        }
 		}
@@ -80,7 +128,7 @@ public class Game {
 		while(!check) {
 			System.out.println("Write y axis: ");
 	        movY = keyboard.nextInt();
-	        if(movY <= Board.getMaxY()) {
+	        if(Board.checkCoordY(movY)) {
 	        	check=true;
 	        }
 		}
@@ -88,31 +136,37 @@ public class Game {
 		while(!check) {
 			System.out.println("Flag? Write 0(yes)-1(no): ");
 			flag = keyboard.nextInt();
-	        if(flag <= 1) {
+	        if(flag == 0 || flag == 1) {
 	        	check=true;
 	        }
 		}
 	}
+	
 		
-	public void play(){
+	public void play(Printer printer){
 
 	    String type;
-	    boolean gameEnd = false;
+	    //boolean gameEnd = false;
 	    int points = 0;
-	    int difficulty = 0;
+	    int difficulty = printer.printDifficultMenu();
 	    
-	    createBoard(difficulty);
+	    while(!gameOver)
+	    {
+	    	this.createBoard(difficulty);
+	    	while(!gameEnd)
+	    	{
+	    		askMovement();
+	    	}
+	    }
+	    
+	    
 	    
 	    
 	    while(!gameOver && !gameEnd) {
 	    	
 	        //Pedirle la i y la j y si quiere poner una banderita
-	    	askMovement();
-
-	    	
-	        //hacer esto solo si no ha puesto una bandera
-	    	
-	        
+	    		    	
+	        //hacer esto solo si no ha puesto una bandera	        
 	        type = Board.getTypeObject(i,j);
 
 	        if(type=="number") {
@@ -138,4 +192,9 @@ public class Game {
 	    	newPlayer(points);
 	    }
 	}
+	
+	/**----------------------------------------------------Functions to test ---------------------------**/
+	
+	public void askMovementTest() {askMovement();}
+	
 }
