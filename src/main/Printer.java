@@ -1,6 +1,7 @@
 package main;
 
 import java.util.Scanner;
+import main.Board;
 
 public class Printer {
 	
@@ -30,7 +31,7 @@ public class Printer {
 		return option;		
 	}
 	
-	public void printBoard(Test.Board board)
+	public void printBoard(Board board)
 	{
 		
 		for(int i = -1; i < board.getMaxX(); i ++)
@@ -115,5 +116,6 @@ public class Printer {
 		System.out.println("--             Error: Choose again          --");
 		System.out.println("----------------------------------------------");
 	}
+
 
 }
