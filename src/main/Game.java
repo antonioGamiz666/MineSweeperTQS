@@ -21,37 +21,7 @@ public class Game {
 		this.gameOver = false;
 		this.gameEnd = false;
 	}
-	
-	public static void main(String[] arg)
-	{
-		Printer printer = new Printer();
-		Game game = new Game();
-		Ranking ranking = new Ranking();
-		int play = 0;
 		
-		while(play!=3)	{	
-			
-			play = game.printMenuStart(printer);
-			
-			if(play == 1)
-			{
-				int points = 0;
-				game = new Game();
-				game.newPlayer();
-				points = game.play(printer);
-				
-				ranking.createRankingPlayer(game.getName(), points);
-			}
-			if(play == 2)
-			{
-				printer.showRanking(ranking);
-			}
-
-		}
-		printer.showFarewell(game.getName());	
-	}
-	
-	
 	public int printMenuStart(Printer printer)
 	{
 		int option = printer.printMenu();
@@ -59,14 +29,13 @@ public class Game {
 	}
 	
 	
-	public void newPlayer(/*int points*/) {
-		System.out.println("Write your name: ");
+	public void newPlayer(Printer printer) {
+		printer.chooseName();
 		try{
 	           BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 	           String name = bufferRead.readLine();
 	           player = new Player(name);
-	           //player.setName(name);
-	           //ranking.createRankingPlayer(name,points);
+
 	       }
 	       catch(IOException e)
 	       {
@@ -78,9 +47,9 @@ public class Game {
 	
 	
 	private void createBoard(int difficulty) {
-		//Board.Board(numberMines,sizeX,sizeY);
+
 		if (difficulty==1) {	
-			Board = new Board(1,8,8); 
+			Board = new Board(10,8,8); 
 		}else {
 			if(difficulty==2) {
 				Board = new Board(40,16,16); 
@@ -90,14 +59,13 @@ public class Game {
 		}
 	}
 	
-	private void askMovement() {
-		
+	public void askMovement(Printer printer) {
 		Scanner keyboard = new Scanner(System.in);
 		
 		boolean check=false;
 		
 		while(!check) {
-			System.out.println("Write x axis: ");
+			printer.printCoordX();
 	        movX = keyboard.nextInt();
 	        if(Board.checkCoordX(movX-1)) {
 	        	check=true;
@@ -105,7 +73,7 @@ public class Game {
 		}
 		check = false;
 		while(!check) {
-			System.out.println("Write y axis: ");
+			printer.printCoordY();
 	        movY = keyboard.nextInt();
 	        if(Board.checkCoordY(movY-1)) {
 	        	check=true;
@@ -113,12 +81,13 @@ public class Game {
 		}
 		check=false;
 		while(!check) {
-			System.out.println("Flag? Write 0(put/quit)-1(movement): ");
+			printer.printFlag();
 			flag = keyboard.nextInt();
 	        if(flag == 0 || flag == 1) {
 	        	check=true;
 	        }
 		}
+		
 	}
 	
 		
@@ -133,9 +102,12 @@ public class Game {
 	    	this.createBoard(difficulty);
 	    	printer.showBoard(Board, getName(), points);
 	    	
+		    gameEnd = false;
+		    gameOver = false;
+	    	
 	    	while(!gameEnd)
 	    	{
-	    		askMovement();
+	    		askMovement(printer);
 	    		if(flag == 0)
 	    		{
 	    			if(!Board.isSelected(movX-1, movY-1)) {
@@ -182,7 +154,7 @@ public class Game {
 	
 	/**----------------------------------------------------Functions to test ---------------------------**/
 	
-	public void askMovementTest() {askMovement();}
+	public void askMovementTest(Printer printer) {askMovement(printer);}
 	public void createBoardTest() {createBoard(0);}
 	
 }
