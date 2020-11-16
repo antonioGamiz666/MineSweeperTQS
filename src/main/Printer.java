@@ -13,7 +13,7 @@ public class Printer {
 	public void showRanking(Ranking rank)
 	{
 		 int length = rank.numPlayers();
-	        for(int pos=1;pos<length;pos++) {
+	        for(int pos=1;pos<=length;pos++) {
 	            printRanking(rank.getName(pos),rank.getPoints(pos),pos);
 	        }
 	}
@@ -22,10 +22,10 @@ public class Printer {
 	
 	private void printRanking(String name, int points, int pos) {
 		if(pos==1) {
-			System.out.print("----------------- RANKING -----------------");
-			System.out.print("| --------- Name ------------- Points -----|");
+			System.out.println("----------------- RANKING -----------------");
+			System.out.println("| --------- Name ------------- Points -----|");
 		}
-			System.out.print("| ----"+pos+"."+name+"-------------"+points+"---|" );	
+			System.out.println("| ----"+pos+"."+name+"-------------"+points+"---|" );	
 	}
 	
 	public int printMenu()
