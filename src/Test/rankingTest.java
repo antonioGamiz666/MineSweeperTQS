@@ -186,11 +186,11 @@ class rankingTest {
 
 
         //5 asserts equal
-        assertEquals("person1",ranking.getRanking(1).getName());
-        assertEquals("person2",ranking.getRanking(2).getName());
-        assertEquals("person6",ranking.getRanking(3).getName());
-        assertEquals("person3",ranking.getRanking(4).getName());
-        assertEquals("person4",ranking.getRanking(5).getName());
+        assertEquals("person1",ranking.getName(1));
+        assertEquals("person2",ranking.getName(2));
+        assertEquals("person6",ranking.getName(3));
+        assertEquals("person3",ranking.getName(4));
+        assertEquals("person4",ranking.getName(5));
 	}
 	
 	@Test
@@ -212,10 +212,36 @@ class rankingTest {
 
 
         //5 asserts equal
-        assertEquals("person8",ranking.getRanking(1).getName());
-        assertEquals("person11",ranking.getRanking(2).getName());
-        assertEquals("person1",ranking.getRanking(3).getName());
-        assertEquals("person2",ranking.getRanking(4).getName());
-        assertEquals("person3",ranking.getRanking(5).getName());
+        assertEquals("person8",ranking.getName(1));
+        assertEquals("person11",ranking.getName(2));
+        assertEquals("person1",ranking.getName(3));
+        assertEquals("person2",ranking.getName(4));
+        assertEquals("person3",ranking.getName(5));
+	}
+	
+	@Test
+	void addPeopleRankingTest_Points() {
+		
+		Ranking ranking = new Ranking();
+
+        ranking.createRankingPlayer("person1", 501);
+        ranking.createRankingPlayer("person2", 501);
+        ranking.createRankingPlayer("person3", 501);
+        ranking.createRankingPlayer("person4", 501);
+        ranking.createRankingPlayer("person5", 501);
+        ranking.createRankingPlayer("person6", 501);
+        ranking.createRankingPlayer("person7", 20);
+        ranking.createRankingPlayer("person8", 9001);
+        ranking.createRankingPlayer("person9", 300);
+        ranking.createRankingPlayer("person10", 501);
+        ranking.createRankingPlayer("person11", 502);
+
+
+        //5 asserts equal
+        assertEquals(9001,ranking.getPoints(1));
+        assertEquals(502,ranking.getPoints(2));
+        assertEquals(501,ranking.getPoints(3));
+        assertEquals(501,ranking.getPoints(4));
+        assertEquals(501,ranking.getPoints(5));
 	}
 }

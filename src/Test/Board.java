@@ -10,6 +10,7 @@ public interface Board {
 	public int getMaxY();
 	public boolean isSelected(int X, int Y);
 	public String getTypeObject(int X, int Y);
+	public int getNumber(int i, int j);
 	
 
 }

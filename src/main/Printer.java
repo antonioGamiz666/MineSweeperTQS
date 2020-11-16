@@ -9,7 +9,24 @@ public class Printer {
 	final static char squareSelected = 160;
 	final static char mine = 216;
 	final static char flag = 182;
-	final
+	
+	public void showRanking(Ranking rank)
+	{
+		 int length = rank.numPlayers();
+	        for(int pos=1;pos<=length;pos++) {
+	            printRanking(rank.getName(pos),rank.getPoints(pos),pos);
+	        }
+	}
+	
+	
+	
+	private void printRanking(String name, int points, int pos) {
+		if(pos==1) {
+			System.out.println("----------------- RANKING -----------------");
+			System.out.println("| --------- Name ------------- Points -----|");
+		}
+			System.out.println("| ----"+pos+"."+name+"-------------"+points+"---|" );	
+	}
 	
 	public int printMenu()
 	{
@@ -31,7 +48,54 @@ public class Printer {
 		return option;		
 	}
 	
-	public void printBoard(Board board)
+	public int printDifficultMenu()
+    {
+        chooseDifficulty();
+        Scanner sc = new Scanner(System.in);
+        
+        int difficulty = sc.nextInt();
+        if(difficulty < 1 || difficulty > 3)
+        {
+            errorChoose();
+            while(difficulty < 1 || difficulty > 3)
+            {
+                chooseDifficulty();
+                difficulty = sc.nextInt();
+            }
+        }
+        
+        return difficulty;        
+    }
+
+    private void chooseDifficulty()
+    {
+        System.out.println("----------------------------------------------");
+        System.out.println("--            Choose your difficult         --");
+        System.out.println("----------------------------------------------");
+        System.out.println("--            1: Amateur                    --");
+        System.out.println("--            2: Medium                     --");
+        System.out.println("--            3: Professional               --");
+        System.out.println("----------------------------------------------");
+       
+    }
+    
+    public void showBoard(Board board, String name, int points)
+    {
+    	printLine(-1, board.getMaxY(), "_");
+    	printHead(name, points);
+    	printLine(-1, board.getMaxY(), "_");
+    	System.out.println("");
+    	
+    	printBoard(board);
+    }
+    
+    private void printHead(String name, int points)
+    {
+    	System.out.println("  Name: " + name );
+    	System.out.println("  Points: " + points );
+    }
+    
+	private void printBoard(Board board)
 	{
 		
 		for(int i = -1; i < board.getMaxX(); i ++)
@@ -41,17 +105,22 @@ public class Printer {
 			{
 				for(int j = -1; j < board.getMaxY(); j++)
 				{
-					if(j ==-1) {System.out.print(" | ");}
-					else {System.out.print(j+1 + "| ");}
+					if(j ==-1) {System.out.print("  | ");}
+					else {if(j<9) {System.out.print(j+1 + " | ");}
+					else {System.out.print(j+1 + "| ");}}
 					
 				}
 				System.out.println("");
+				printLine(-1, board.getMaxY(), " ");
 			}
 			else
 			{
 				for(int j = -1; j < board.getMaxY(); j++)
 				{
-					if(j == -1) { System.out.print(i+1 + "| ");}
+					if(j == -1) { 
+						if(i<9) {System.out.print(i+1 + " | ");}
+						else {System.out.print(i+1 + "| ");}
+						}
 					else 
 					{
 						if(board.isSelected(i, j))
@@ -67,12 +136,15 @@ public class Printer {
 									System.out.printf("%c",squareSelected);
 									break;
 								case "number":
-									System.out.print(/*board.getNumber()*/ "0");
+									int nAux = board.getNumber(i,j);
+									if(nAux != 0) {System.out.print(nAux);}
+									else {System.out.printf("%c", squareSelected);}									
 									break;
 								case "flag":
 									System.out.printf("%c",flag);
 									break;
 								default:
+									System.out.printf("%c", squareSelected);
 									break;
 								}
 							}
@@ -88,17 +160,44 @@ public class Printer {
 								System.out.printf("%c",squareNotSlected);
 							}
 						}
-						System.out.print("| ");
+						System.out.print(" | ");
 					}
 					
 
 				}
 				
 				System.out.println("");
+				printLine(-1, board.getMaxY(), " ");
+				//System.out.println("");
 			}
-		}
-				
+		}		
 			
+	}
+	
+	public void printGameOver()
+	{
+		
+		System.out.println("----------------------------------------------");
+		System.out.println("--                  Game over               --");
+		System.out.println("----------------------------------------------");
+	}
+	
+	public void showFarewell(String name)
+	{
+		System.out.println("----------------------------------------------");
+		System.out.println("--    Good bye "+name);
+		System.out.println("----------------------------------------------");
+	}
+	
+	private void printLine(int min, int max, String compl)
+	{
+		System.out.print(" ");
+		for (int i = min; i<max; i++)
+		{
+			System.out.print("___" + compl);
+
+		}
+		System.out.println("");
 	}
 	
 	private void printMenuChoose()
@@ -115,6 +214,13 @@ public class Printer {
 	{	System.out.println("----------------------------------------------");
 		System.out.println("--             Error: Choose again          --");
 		System.out.println("----------------------------------------------");
+	}
+	
+	/*** --------------function for test----------------------------- ***/
+	
+	public void printBoardTest(Board board)
+	{
+		printBoard(board);
 	}
 
 

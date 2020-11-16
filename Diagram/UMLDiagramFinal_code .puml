@@ -1,0 +1,147 @@
+@startuml
+Game "1"<--> "1" Player
+Game  *-- "1" Board
+Game "1" <-- "1" Ranking
+
+Board *-- "*" Square
+
+RankingPlayer "0..10" --* Ranking
+
+class Printer
+{
+  -{static} char squareNotSlected
+  -{static} char squareSelected
+  -{static} char mine
+  -{static} char flag
+  
+  + showRanking(Ranking)
+  + printMenu(): int
+  + printDifficultMenu(): int
+  + showBoard(Board, String, int)
+  + printGameOver()
+  + showFarewell(String)
+  + printBoardTest(Board)  
+  - printRanking(String, int, int)
+  - chooseDifficulty()  
+  - printHead(String, int)
+  - printBoard(Board)  
+  - printLine(int, int, String)
+  - printMenuChoose()
+  - errorChoose()  
+}
+
+
+class Game{
+  -{static} int MIN_POINTS
+  - Player player
+  - Board board
+  - boolean gameOver
+  - boolean gameEnd
+  - int movX
+  - int movY
+  - int flag
+
+  - {static} main(String)
+  + Game()
+  + play(int): int
+  + printMenuStart(Printer)
+  + newPlayer()
+  + getName(): String
+  - createBoard(int)
+  - askMovement()
+  + askMovementTest()
+  + createBoardTest()
+}
+
+class Player{
+- String name
+
++ Player(String)
++ getName(): String
++ setname(String)
+}
+
+class Board{
+  - Square[][] listSquares
+  - int numMines
+  - int maxX
+  - int maxY
+
+  + Board(int, int, int)
+  + getNumMines():int
+  + setNumMines(int)
+  + getMaxX(): int
+  + setMaxX(int)
+  + getMaxY(): int
+  + setMaxY(int)
+  + createBoard()
+  + checkCoordX(int): boolean
+  + checkCoordY(int): boolean
+  + setSquare(Square, int, int)
+  + Square: getSquare(int int)
+  + getTypeObject(int, int): String
+  + isSelected(int, int): boolean
+  + getNumber(int, int): int
+  + openSquare(int, int): int
+  + setTypeObject(int, int, type)
+  + checkFinish(): boolean
+  + setFlag(int, int)
+  + getFlag(int,int):boolean
+  - openRecursiveSquare(int, int, int): int
+  - checkOpenRecursive(int, int): int)
+  - checkFlag(int, int)
+  - setSelected(int, int, boolean)
+  - createRandom(int): int
+  - createMines()
+  - setNumbers(int, int)
+  - createFlag()
+  - setNumbers(int, int)
+  - showMineMap()
+  + setAllSelecetd()
+  +  setNumbertest(int, int)
+}
+
+class Square{
+  - String type
+  - boolean selected
+  - int number
+  
+  + Square()
+  + Square(String)
+  + isFlag(): boolean
+  + setFlag(boolean)
+  + isSelected(): boolean
+  + setSelected(boolean)
+  + getTypeObject(): String
+  + setTypeObject(String)
+  + setNumber(int)
+  + getNumber(): int  
+  - exist(String): boolean
+
+}
+
+
+class RankingPlayer implements Comparable{
+  - String name
+  - int points
+  
+  + RankingPlayer(String, int)
+  + getName(): String
+  + setName(String)
+  + getPoints(): int
+  + setPoints(int)
+  + compareTo(RankingPlayer): int
+}
+
+class Ranking{
+    - list<RankingPlayer> rankingList
+  
+    + Ranking()
+    + createRankingPlayer(name,points)
+    + getRanking(int): RankingPlayer 
+    + getPoints(int): int
+    + getName(int): String
+    + numPLayers(): int
+}
+
+@enduml
