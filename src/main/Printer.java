@@ -168,7 +168,7 @@ public class Printer {
 				
 				System.out.println("");
 				printLine(-1, board.getMaxY(), " ");
-				//System.out.println("");
+
 			}
 		}		
 			
@@ -216,12 +216,35 @@ public class Printer {
 		System.out.println("----------------------------------------------");
 	}
 	
+		public void chooseName() {
+			
+			System.out.println("----------------------------------------------");
+			System.out.print("--             Choose yor name:");
+
+		
+		
+	}
+	public void printCoordX()
+	{
+		System.out.println("Write x axis: ");
+	}
+	
+	public void printCoordY()
+	{
+		System.out.println("Write y axis: ");
+	}
+	
+	public void printFlag()
+	{
+		System.out.println("Flag? Write 0(put/quit)-1(movement): ");
+	}
+	
 	/*** --------------function for test----------------------------- ***/
 	
-	public void printBoardTest(Board board)
+	/*public void printBoardTest(Board board)
 	{
 		printBoard(board);
-	}
-
+	}*/
+	
 
 }

@@ -11,11 +11,11 @@ public class RankingPlayer implements Comparable<RankingPlayer>{
 	
 	public String getName() {return name;}
 	
-	public void setName(String type) {this.name = name;}
+	//public void setName(String type) {this.name = name;}
 	
 	public int getPoints() {return points;}
 	
-	public void setPoints(String type) {this.points = points;}
+	//public void setPoints(String type) {this.points = points;}
 
 	@Override
     public int compareTo(RankingPlayer rp) {
