@@ -135,11 +135,6 @@ public class Board {
 
 	public int getNumber(int x, int y) {return listSquares[x][y].getNumber();}
 	
-	private boolean checkFlag(int posX, int posY){
-	    if(getTypeObject(posX, posY) == "flag"){return true;}
-	    else{return false;}
-	}
-
 	public int openSquare(int posX, int posY){
         int points = 0;
         if(checkCoordX(posX) && checkCoordY(posY))
