@@ -150,8 +150,9 @@ public class Game {
 	    		}
 	    		else
 	    		{
-	    			result = Board.openSquare(movX-1, movY-1);
-	    			
+	    			if(!Board.isSelected(movX-1, movY-1)) {
+	    				result = Board.openSquare(movX-1, movY-1);
+	    			}
 	    			if(result == 0)
 	    			{
 	    				gameEnd = true;
