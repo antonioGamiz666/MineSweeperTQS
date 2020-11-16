@@ -42,6 +42,7 @@ class rankingTest {
         assertEquals("person2",ranking.getRanking(2).getName());
 	}
 	
+	@Test
 	void OrderTwoTest3() {
 		
 		Ranking ranking = new Ranking();
@@ -149,6 +150,7 @@ class rankingTest {
         assertEquals("person3",ranking.getRanking(3).getName());
         assertEquals("person4",ranking.getRanking(4).getName());
         assertEquals("person6",ranking.getRanking(5).getName());
+        assertEquals(5,ranking.numPlayers());
 	}
 
 	@Test
@@ -170,6 +172,7 @@ class rankingTest {
         assertEquals("person2",ranking.getRanking(3).getName());
         assertEquals("person3",ranking.getRanking(4).getName());
         assertEquals("person4",ranking.getRanking(5).getName());
+        assertEquals(5,ranking.numPlayers());
 	}
 	
 	@Test
@@ -191,6 +194,7 @@ class rankingTest {
         assertEquals("person6",ranking.getName(3));
         assertEquals("person3",ranking.getName(4));
         assertEquals("person4",ranking.getName(5));
+        assertEquals(5,ranking.numPlayers());
 	}
 	
 	@Test
