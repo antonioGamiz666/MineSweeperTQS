@@ -59,6 +59,7 @@ public class mockObjectGame implements GameI {
 		    
 		    gameEnd = false;
 		    gameOver = false;
+		    
 		    while(!gameOver && !gameEnd)
 		    {
 		    	this.createBoard(difficulty);
