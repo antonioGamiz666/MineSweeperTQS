@@ -27,11 +27,11 @@ public class Board {
 	
 	public int getMaxX() {return maxX;}
 	
-	public void setMaxX(int maxX) {this.maxX = maxX;}
+	//public void setMaxX(int maxX) {this.maxX = maxX;}
 	
 	public int getMaxY() {return maxY;}
 	
-	public void setMaxY(int maxY) {this.maxY = maxY;}
+	//public void setMaxY(int maxY) {this.maxY = maxY;}
 	
 	
 	public void createBoard() {
@@ -113,10 +113,10 @@ public class Board {
 	}
 	
 	
-	public void setSquare(Square square, int X, int Y)
+	/*public void setSquare(Square square, int X, int Y)
 	{
 		listSquares[X][Y] = square;	
-	}
+	}*/
 	
 	public Square getSquare(int X, int Y)
 	{
@@ -232,7 +232,6 @@ public class Board {
 	            break;
 	        case "mine":
 	            System.out.println("im a mine, my coord are X:" +  X + " Y:" + Y);
-	        case "flag":
 	            break;        
 	        default:
 	            points += 10;
@@ -300,7 +299,7 @@ public class Board {
 	public boolean getFlag(int posX, int posY) {return listSquares[posX][posY].isFlag();}
 	
 	//----------------function for test--------------------------------------------------------------//
-	public void setAllSelecetd()
+	/*public void setAllSelecetd()
 	{
 		for(int x=0; x<maxX; x++)
 		{
@@ -312,7 +311,7 @@ public class Board {
 	}
 	
 	public void setNumbertest(int X, int Y) {this.setNumbers(X, Y);}
-
+*/
 	//----------------------------------------------------------------------------------------------//
 	
 }

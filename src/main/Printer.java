@@ -224,15 +224,6 @@ public class Printer {
 		
 		
 	}
-
-	
-	/*** --------------function for test----------------------------- ***/
-	
-	public void printBoardTest(Board board)
-	{
-		printBoard(board);
-	}
-	
 	public void printCoordX()
 	{
 		System.out.println("Write x axis: ");
@@ -248,8 +239,12 @@ public class Printer {
 		System.out.println("Flag? Write 0(put/quit)-1(movement): ");
 	}
 	
-
-
-
+	/*** --------------function for test----------------------------- ***/
+	
+	/*public void printBoardTest(Board board)
+	{
+		printBoard(board);
+	}*/
+	
 
 }

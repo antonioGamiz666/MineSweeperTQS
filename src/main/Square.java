@@ -7,14 +7,14 @@ public class Square {
 	private boolean flag;
 	
 	
-	public Square()
+	/*public Square()
 	{
 		
 		this.number = 0;
 		this.type = "empty";
 		this.setSelected(false);
 		this.flag = false;
-	}
+	}*/
 	
 	public Square(String typeObject)
 	{
