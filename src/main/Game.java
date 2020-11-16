@@ -27,39 +27,34 @@ public class Game {
 		Printer printer = new Printer();
 		Game game = new Game();
 		Ranking ranking = new Ranking();
+		int play = 0;
+		
+		while(play!=3)	{	
+			
+			play = game.printMenuStart(printer);
+			
+			if(play == 1)
+			{
+				int points = 0;
+				game = new Game();
+				game.newPlayer();
+				points = game.play(printer);
 				
-		int play = game.printMenuStart(printer);
-		if(play == 1)
-		{
-			int points = 0;
-			
-			game.newPlayer();
-			points = game.play(printer);
-			
-			ranking.createRankingPlayer(game.getName(), points);
-			printer.showRanking(ranking);
+				ranking.createRankingPlayer(game.getName(), points);
+			}
+			if(play == 2)
+			{
+				printer.showRanking(ranking);
+			}
+
 		}
-		
-		//game.showFarewell
-		
-		
+		//game.showFarewell	
 	}
 	
 	
 	public int printMenuStart(Printer printer)
 	{
 		int option = printer.printMenu();
-		switch (option) {
-		case 2:
-			//showStats()
-			option = printer.printMenu();
-			break;
-		case 3:
-			//showFarewell()
-			gameEnd = true;
-			break;
-
-		}
 		return option;
 	}
 	
@@ -137,7 +132,7 @@ public class Game {
 	    while(!gameOver)
 	    {
 	    	this.createBoard(difficulty);
-	    	printer.printBoard(Board);
+	    	printer.showBoard(Board, getName(), points);
 	    	
 	    	while(!gameEnd)
 	    	{
@@ -164,11 +159,13 @@ public class Game {
 	    				if(result == -1)
 	    				{
 	    					System.out.println("!!!!!!ERROR!!!!!!!!");
+	    				}else {
+	    					points+=result;
 	    				}
 	    			}
 	    		}
 	    		
-	    		printer.printBoard(Board);
+	    		printer.showBoard(Board, getName(), points);;
 	    	}
 	    	if(!gameOver)
 	    	{
@@ -176,7 +173,6 @@ public class Game {
 	    	}
 	    	
 	    }
-	    
 	    return points;
 
 	}
