@@ -80,11 +80,7 @@ public class Game {
 	private void createBoard(int difficulty) {
 		//Board.Board(numberMines,sizeX,sizeY);
 		if (difficulty==1) {	
-<<<<<<< HEAD
-			Board = new Board(1,8,8); 
-=======
 			Board = new Board(11,8,8); 
->>>>>>> Game
 		}else {
 			if(difficulty==2) {
 				Board = new Board(40,16,16); 
