@@ -48,7 +48,7 @@ public class Game {
 			}
 
 		}
-		//game.showFarewell	
+		printer.showFarewell(game.getName());	
 	}
 	
 	
@@ -57,7 +57,6 @@ public class Game {
 		int option = printer.printMenu();
 		return option;
 	}
-	
 	
 	
 	public void newPlayer(/*int points*/) {
@@ -81,7 +80,7 @@ public class Game {
 	private void createBoard(int difficulty) {
 		//Board.Board(numberMines,sizeX,sizeY);
 		if (difficulty==1) {	
-			Board = new Board(11,8,8); 
+			Board = new Board(10,8,8); 
 		}else {
 			if(difficulty==2) {
 				Board = new Board(40,16,16); 
@@ -129,7 +128,7 @@ public class Game {
 	    int difficulty = printer.printDifficultMenu();
 	    
 	    
-	    while(!gameOver)
+	    while(!gameOver && !gameEnd)
 	    {
 	    	this.createBoard(difficulty);
 	    	printer.showBoard(Board, getName(), points);
@@ -145,8 +144,10 @@ public class Game {
 	    		}
 	    		else
 	    		{
-	    			if(!Board.isSelected(movX-1, movY-1) && !Board.getFlag(movX-1, movY-1)) {
+	    			if(!Board.isSelected(movX-1, movY-1) && !Board.getFlag(movX-1, movY-1)) 
+	    			{
 	    				result = Board.openSquare(movX-1, movY-1);
+	    				gameEnd = Board.checkFinish();
 	    			}
 	    			if(result == 0)
 	    			{
@@ -167,9 +168,10 @@ public class Game {
 	    		
 	    		printer.showBoard(Board, getName(), points);;
 	    	}
+    		printer.printGameOver();
 	    	if(!gameOver)
 	    	{
-	    		points = (difficulty+1)*MIN_POINTS;
+	    		points += (difficulty+1)*MIN_POINTS;
 	    	}
 	    	
 	    }
