@@ -8,7 +8,7 @@ import main.Printer;
 
 public class Game {
 	
-	private final int MIN_POINTS = 10;
+	private final static int MIN_POINTS = 10;
 	
 	private Board Board;
 	private Player player;
@@ -80,7 +80,7 @@ public class Game {
 	private void createBoard(int difficulty) {
 		//Board.Board(numberMines,sizeX,sizeY);
 		if (difficulty==1) {	
-			Board = new Board(11,8,8); 
+			Board = new Board(1,8,8); 
 		}else {
 			if(difficulty==2) {
 				Board = new Board(40,16,16); 

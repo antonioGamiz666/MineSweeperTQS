@@ -95,7 +95,7 @@ public class Printer {
     	System.out.println("  Points: " + points );
     }
     
-	private void printBoard(Board board)
+	private void printBoard(Test.Board board)
 	{
 		
 		for(int i = -1; i < board.getMaxX(); i ++)
@@ -214,6 +214,13 @@ public class Printer {
 	{	System.out.println("----------------------------------------------");
 		System.out.println("--             Error: Choose again          --");
 		System.out.println("----------------------------------------------");
+	}
+	
+	/*** --------------function for test----------------------------- ***/
+	
+	public void printBoardTest(Test.Board board)
+	{
+		printBoard(board);
 	}
 
 
