@@ -289,11 +289,18 @@ private int openRecursiveSquare(int posX, int posY, int points){
 	public void setFlag(int posX, int posY) {
 		if(listSquares[posX][posY].isFlag()) {
 			listSquares[posX][posY].setFlag(false);
+			if(listSquares[posX][posY].getNumber()==-1) {
+				setTypeObject(posX, posY, "mine");
+			}else {
+				setTypeObject(posX, posY, "number");
+			}
 		}else {
 			listSquares[posX][posY].setFlag(true);
+			setTypeObject(posX, posY, "flag");
 		}
 	}
 	
+	public boolean getFlag(int posX, int posY) {return listSquares[posX][posY].isFlag();}
 	
 	//----------------function for test--------------------------------------------------------------//
 	public void setAllSelecetd()

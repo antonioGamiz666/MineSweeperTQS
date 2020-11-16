@@ -85,10 +85,10 @@ public class Game {
 	
 	private void createBoard(int difficulty) {
 		//Board.Board(numberMines,sizeX,sizeY);
-		if (difficulty==0) {	
+		if (difficulty==1) {	
 			Board = new Board(10,8,8); 
 		}else {
-			if(difficulty==1) {
+			if(difficulty==2) {
 				Board = new Board(40,16,16); 
 			}else{
 				Board = new Board(99,16,30); 
@@ -105,7 +105,7 @@ public class Game {
 		while(!check) {
 			System.out.println("Write x axis: ");
 	        movX = keyboard.nextInt();
-	        if(Board.checkCoordX(movX)) {
+	        if(Board.checkCoordX(movX-1)) {
 	        	check=true;
 	        }
 		}
@@ -113,7 +113,7 @@ public class Game {
 		while(!check) {
 			System.out.println("Write y axis: ");
 	        movY = keyboard.nextInt();
-	        if(Board.checkCoordY(movY)) {
+	        if(Board.checkCoordY(movY-1)) {
 	        	check=true;
 	        }
 		}
@@ -144,11 +144,13 @@ public class Game {
 	    		askMovement();
 	    		if(flag == 0)
 	    		{
-	    			Board.setTypeObject(movX, movY, "flag");
+	    			if(!Board.isSelected(movX-1, movY-1)) {
+	    				Board.setFlag(movX-1, movY-1);
+	    			}
 	    		}
 	    		else
 	    		{
-	    			result = Board.openSquare(movX, movY);
+	    			result = Board.openSquare(movX-1, movY-1);
 	    			
 	    			if(result == 0)
 	    			{
@@ -164,11 +166,14 @@ public class Game {
 	    				}
 	    			}
 	    		}
+	    		
+	    		printer.printBoard(Board);
 	    	}
 	    	if(!gameOver)
 	    	{
 	    		points = (difficulty+1)*MIN_POINTS;
-	    	}	    	
+	    	}
+	    	
 	    }
 	    
 	    return points;
