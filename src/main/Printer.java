@@ -170,9 +170,23 @@ public class Printer {
 				printLine(-1, board.getMaxY(), " ");
 				//System.out.println("");
 			}
-		}
-				
+		}		
 			
+	}
+	
+	public void printGameOver()
+	{
+		
+		System.out.println("----------------------------------------------");
+		System.out.println("--                  Game over               --");
+		System.out.println("----------------------------------------------");
+	}
+	
+	public void showFarewell(String name)
+	{
+		System.out.println("----------------------------------------------");
+		System.out.println("--    Good bye "+name);
+		System.out.println("----------------------------------------------");
 	}
 	
 	private void printLine(int min, int max, String compl)

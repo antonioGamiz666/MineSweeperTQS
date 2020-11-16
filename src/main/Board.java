@@ -286,6 +286,29 @@ private int openRecursiveSquare(int posX, int posY, int points){
 		return search;
 	}
 	
+	public boolean checkFinish()
+	{
+		boolean finish = true;
+		int i =0,j=0;
+		while(i<maxX && finish)
+		{
+			while(j<maxY && finish)
+			{
+				if(listSquares[i][j].getNumber() >= 0)
+				{
+					if(!listSquares[i][j].isSelected())
+					{
+						finish = false;
+					}
+				}
+				j++;
+			}
+			i++;
+		}
+		
+		return finish;
+	}
+	
 	public void setFlag(int posX, int posY) {
 		if(listSquares[posX][posY].isFlag()) {
 			listSquares[posX][posY].setFlag(false);
