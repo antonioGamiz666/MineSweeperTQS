@@ -36,7 +36,6 @@ public class Game {
 			if(play == 1)
 			{
 				int points = 0;
-				printer = new Printer();
 				game = new Game();
 				game.newPlayer();
 				points = game.play(printer);
@@ -56,17 +55,6 @@ public class Game {
 	public int printMenuStart(Printer printer)
 	{
 		int option = printer.printMenu();
-		switch (option) {
-		case 2:
-			//showStats()
-			option = printer.printMenu();
-			break;
-		case 3:
-			//showFarewell()
-			gameEnd = true;
-			break;
-
-		}
 		return option;
 	}
 	
