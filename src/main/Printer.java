@@ -59,7 +59,7 @@ public class Printer {
             errorChoose();
             while(difficulty < 1 || difficulty > 3)
             {
-                printMenuChoose();
+                chooseDifficulty();
                 difficulty = sc.nextInt();
             }
         }
@@ -79,7 +79,23 @@ public class Printer {
        
     }
     
-	public void printBoard(Board board)
+    public void showBoard(Board board, String name, int points)
+    {
+    	printLine(-1, board.getMaxY(), "_");
+    	printHead(name, points);
+    	printLine(-1, board.getMaxY(), "_");
+    	System.out.println("");
+    	
+    	printBoard(board);
+    }
+    
+    private void printHead(String name, int points)
+    {
+    	System.out.println("  Name: " + name );
+    	System.out.println("  Points: " + points );
+    }
+    
+	private void printBoard(Board board)
 	{
 		
 		for(int i = -1; i < board.getMaxX(); i ++)
@@ -95,6 +111,7 @@ public class Printer {
 					
 				}
 				System.out.println("");
+				printLine(-1, board.getMaxY(), " ");
 			}
 			else
 			{
@@ -150,10 +167,23 @@ public class Printer {
 				}
 				
 				System.out.println("");
+				printLine(-1, board.getMaxY(), " ");
+				//System.out.println("");
 			}
 		}
 				
 			
+	}
+	
+	private void printLine(int min, int max, String compl)
+	{
+		System.out.print(" ");
+		for (int i = min; i<max; i++)
+		{
+			System.out.print("___" + compl);
+
+		}
+		System.out.println("");
 	}
 	
 	private void printMenuChoose()
