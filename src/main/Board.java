@@ -23,15 +23,15 @@ public class Board {
 	
 	public int getNumMines() {return numMines;}
 	
-	public void setNumMines(String type) {this.numMines = numMines;}
+	public void setNumMines(int numMines ) {this.numMines = numMines;}
 	
 	public int getMaxX() {return maxX;}
 	
-	public void setMaxX(String type) {this.maxX = maxX;}
+	public void setMaxX(int maxX) {this.maxX = maxX;}
 	
 	public int getMaxY() {return maxY;}
 	
-	public void setMaxY(String type) {this.maxY = maxY;}
+	public void setMaxY(int maxY) {this.maxY = maxY;}
 	
 	
 	public void createBoard() {
@@ -173,7 +173,7 @@ public class Board {
         return points;
     }
 
-private int openRecursiveSquare(int posX, int posY, int points){
+	private int openRecursiveSquare(int posX, int posY, int points){
         
         //System.out.println("posX:" + posX + "  posY:" + posY);
         
@@ -264,27 +264,6 @@ private int openRecursiveSquare(int posX, int posY, int points){
 	}
 	
 	public void setTypeObject(int X, int Y, String type) {listSquares[X][Y].setTypeObject(type);}
-	
-	public boolean checkEndGame() {
-		
-		boolean search= true;
-		
-		for(int posX=0;posX<maxX;posX++) {
-			for(int posY=0;posY<maxX;posY++) {
-					if(!listSquares[posX][posY].isSelected() && listSquares[posX][posY].getTypeObject()=="number") {
-						search = false;
-						return search;
-					}
-					if(!listSquares[posX][posY].isSelected() && listSquares[posX][posY].getTypeObject()=="flag") {
-						if(listSquares[posX][posY].getNumber()!=-1) {
-						search = false;
-						return search;	
-						}
-					}
-			}
-		}
-		return search;
-	}
 	
 	public boolean checkFinish()
 	{
