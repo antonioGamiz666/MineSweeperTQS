@@ -7,7 +7,7 @@ public class main {
 
 	public static void main(String[] args)
 	{			
-	    Game game= new Game();
+	   Game game= new Game();
 		//GameI game = new mockObjectGame();
 	    Ranking ranking = new Ranking();
 	    Printer printer = new Printer();
@@ -19,6 +19,7 @@ public class main {
 			
 			if(playOption == 1)
 			{
+				game= new Game();
 				int points = 0;
 				game.newPlayer(printer);
 				points = game.play(printer);
