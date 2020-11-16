@@ -95,7 +95,7 @@ public class Printer {
     	System.out.println("  Points: " + points );
     }
     
-	private void printBoard(Test.Board board)
+	private void printBoard(Board board)
 	{
 		
 		for(int i = -1; i < board.getMaxX(); i ++)
@@ -218,7 +218,7 @@ public class Printer {
 	
 	/*** --------------function for test----------------------------- ***/
 	
-	public void printBoardTest(Test.Board board)
+	public void printBoardTest(Board board)
 	{
 		printBoard(board);
 	}
