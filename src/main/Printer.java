@@ -10,7 +10,17 @@ public class Printer {
 	final static char mine = 216;
 	final static char flag = 182;
 	
-	public void printRanking(String name, int points, int pos) {
+	public void showRanking(Ranking rank)
+	{
+		 int length = rank.numPlayers();
+	        for(int pos=1;pos<length;pos++) {
+	            printRanking(rank.getName(pos),rank.getPoints(pos),pos);
+	        }
+	}
+	
+	
+	
+	private void printRanking(String name, int points, int pos) {
 		if(pos==1) {
 			System.out.print("----------------- RANKING -----------------");
 			System.out.print("| --------- Name ------------- Points -----|");
@@ -62,7 +72,11 @@ public class Printer {
         System.out.println("----------------------------------------------");
         System.out.println("--            Choose your difficult         --");
         System.out.println("----------------------------------------------");
-        
+        System.out.println("--            1: Amateur                    --");
+        System.out.println("--            2: Medium                     --");
+        System.out.println("--            3: Professional               --");
+        System.out.println("----------------------------------------------");
+       
     }
     
 	public void printBoard(Board board)
@@ -75,8 +89,9 @@ public class Printer {
 			{
 				for(int j = -1; j < board.getMaxY(); j++)
 				{
-					if(j ==-1) {System.out.print(" | ");}
-					else {System.out.print(j+1 + "| ");}
+					if(j ==-1) {System.out.print("  | ");}
+					else {if(j<9) {System.out.print(j+1 + " | ");}
+					else {System.out.print(j+1 + "| ");}}
 					
 				}
 				System.out.println("");
@@ -85,7 +100,10 @@ public class Printer {
 			{
 				for(int j = -1; j < board.getMaxY(); j++)
 				{
-					if(j == -1) { System.out.print(i+1 + "| ");}
+					if(j == -1) { 
+						if(i<9) {System.out.print(i+1 + " | ");}
+						else {System.out.print(i+1 + "| ");}
+						}
 					else 
 					{
 						if(board.isSelected(i, j))
@@ -125,7 +143,7 @@ public class Printer {
 								System.out.printf("%c",squareNotSlected);
 							}
 						}
-						System.out.print("| ");
+						System.out.print(" | ");
 					}
 					
 

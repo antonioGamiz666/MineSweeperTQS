@@ -179,5 +179,94 @@ class BoardTest {
 		printer.printBoard(board);
 		
 	}
+	
+	@Test
+	void endGameTest()
+	{
+		System.out.println("--------------------END GAME TEST --------------");
+		
+		Printer printer = new Printer();
+		Board board = new Board(0,5,5);		
+		board.setTypeObject(2, 2, "mine");
+		board.setNumbertest(2, 2);
+		
+		printer.printBoard(board);	
+		
+		System.out.println("-------------- COMPLETED MAP FIRST TEST --------------");
+		
+		board.openSquare(0, 2);
+		assertEquals(true,board.checkEndGame());
+		printer.printBoard(board);
+		
+		System.out.println("-------------- NOT COMPLETED MAP SECOND TEST (MINE) --------------");
+		
+		board = new Board(0,5,5);		
+		board.setTypeObject(2, 2, "mine");
+		board.setNumbertest(2, 2);
+		
+		board.openSquare(2, 2);
+		assertEquals(false,board.checkEndGame());
+		printer.printBoard(board);
+		
+		System.out.println("-------------- NOT COMPLETED MAP SECOND TEST (NUMBER) --------------");
+		
+		board = new Board(0,5,5);		
+		board.setTypeObject(2, 2, "mine");
+		board.setNumbertest(2, 2);
+		
+		board.openSquare(2, 3);
+		assertEquals(false,board.checkEndGame());
+		printer.printBoard(board);
+		
+		System.out.println("-------------- END GAME TEST - 2 --------------");
+		
+		board = new Board(0,5,5);
+		board.setTypeObject(2,2, "mine");
+		board.setNumbertest(2,2);
+		board.setTypeObject(1, 2, "flag");
+		board.setTypeObject(1, 0, "flag");
+		board.setTypeObject(0, 1, "flag");
+		
+		printer.printBoard(board);
+		
+		System.out.println("-------------- NOT COMPLETED MAP FIRST TEST (FLAG) --------------");
+		
+		board.openSquare(1, 4);
+		board.openSquare(0, 0);
+		assertEquals(false,board.checkEndGame());
+		printer.printBoard(board);
+		
+		System.out.println("-------------- END GAME TEST - 3 --------------");
+		
+		board = new Board(0,5,5);
+		board.setTypeObject(2,2, "mine");
+		board.setNumbertest(2,2);
+		board.setTypeObject(0, 0, "flag");
+		
+		printer.printBoard(board);
+		
+		System.out.println("-------------- NOT COMPLETED MAP FIRST TEST (FLAG) --------------");
+		
+		board.openSquare(0, 1);
+		assertEquals(false,board.checkEndGame());
+		printer.printBoard(board);
+		
+		System.out.println("-------------- END GAME TEST - 3 --------------");
+		
+		board = new Board(0,5,5);
+		board.setTypeObject(2,2, "mine");
+		board.setNumbertest(2,2);
+		board.setTypeObject(2,2, "flag");
+		
+		printer.printBoard(board);
+		
+		System.out.println("-------------- NOT COMPLETED MAP FIRST TEST (FLAG+MINE) --------------");
+		
+		board.openSquare(0, 1);
+		assertEquals(true,board.checkEndGame());
+		printer.printBoard(board);
+		
+	}
+	
 
 }
