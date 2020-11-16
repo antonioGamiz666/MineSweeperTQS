@@ -119,7 +119,7 @@ public class Game {
 		}
 		check=false;
 		while(!check) {
-			System.out.println("Flag? Write 0(yes)-1(no): ");
+			System.out.println("Flag? Write 0(put/quit)-1(movement): ");
 			flag = keyboard.nextInt();
 	        if(flag == 0 || flag == 1) {
 	        	check=true;
@@ -150,7 +150,7 @@ public class Game {
 	    		}
 	    		else
 	    		{
-	    			if(!Board.isSelected(movX-1, movY-1)) {
+	    			if(!Board.isSelected(movX-1, movY-1) && !Board.getFlag(movX-1, movY-1)) {
 	    				result = Board.openSquare(movX-1, movY-1);
 	    			}
 	    			if(result == 0)
