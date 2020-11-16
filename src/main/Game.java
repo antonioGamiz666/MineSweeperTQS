@@ -49,7 +49,7 @@ public class Game {
 	private void createBoard(int difficulty) {
 
 		if (difficulty==1) {	
-			Board = new Board(10,8,8); 
+			Board = new Board(4,8,8); 
 		}else {
 			if(difficulty==2) {
 				Board = new Board(40,16,16); 
@@ -145,7 +145,7 @@ public class Game {
 	    	{
 	    		points += (difficulty+1)*MIN_POINTS;
 	    	}
-	    	
+	    	gameEnd=false;
 	    }
 	    return points;
 

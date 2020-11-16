@@ -13,7 +13,6 @@ public class main {
 	    Printer printer = new Printer();
 	    int playOption = 1;
 
-
 		while(playOption!=3)	{	
 			
 			playOption = game.printMenuStart(printer);
@@ -30,9 +29,9 @@ public class main {
 			{
 				printer.showRanking(ranking);
 			}
-
 		}
-		printer.showFarewell(game.getName());	
+		if(ranking.numPlayers()>0) {
+			printer.showFarewell(game.getName());	
+		}
 	}
-
 }
